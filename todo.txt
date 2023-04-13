@@ -17,3 +17,8 @@ then search by user name and number api call that I had on postman
 
 //item perks
 https://data.destinysets.com/api/Destiny2.GetItem?membershipType=2&itemInstanceId=6917529888843208136&destinyMembershipId=4611686018428494348&components=302
+
+
+steam = 3
+xbox = 1 
+psn = 2
