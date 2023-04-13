@@ -1,0 +1,65 @@
+.guardian-select {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+  justify-content: center;
+  text-align: center;
+}
+
+.guardian-select-title {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.image-container:hover {
+  opacity: 0.9;
+  transform: scale(1.1px);
+  transition: all 0.5s ease;
+}
+
+.light-level {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  background-color: transparent;
+  color: rgb(231, 207, 81);
+  font-size: 33px;
+}
+
+.text {
+  position: absolute;
+  padding: 5px;
+  background-color: transparent;
+  color: #fff;
+  top: 28%;
+  left: 18%;
+  transform: translate(0, -50%);
+  text-align: left;
+}
+
+.guardian-type {
+  color: white;
+  font-size: 28px;
+  font-weight: 200;
+}
+
+.guardian-race {
+  color: rgb(209, 209, 209);
+  font-size: 15px;
+  font-weight: 200;
+}

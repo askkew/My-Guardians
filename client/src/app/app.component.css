@@ -1,0 +1,27 @@
+.guardian-container {
+  background-image: url('https://i.imgur.com/En4wa7P.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.inventory-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+  background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3046bb39-8dcd-46b8-a486-ce9ce67ae102/dbgudlw-97141612-452d-43f8-aeb1-6579ecc08ead.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzMwNDZiYjM5LThkY2QtNDZiOC1hNDg2LWNlOWNlNjdhZTEwMlwvZGJndWRsdy05NzE0MTYxMi00NTJkLTQzZjgtYWViMS02NTc5ZWNjMDhlYWQuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.S9j6g3vVbn7650ijG81Du-Kz_9LjVfc2cnCjzrc2fAI');
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 1920px;
+  max-height: 1080px;
+  width: 80%;
+  height: 80%;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
