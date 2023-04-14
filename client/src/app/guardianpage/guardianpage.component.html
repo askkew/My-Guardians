@@ -14,8 +14,8 @@
         <div class="image-overlay">
           <span class="light-level">{{ character.light }}</span>
           <div class="text">
-            <p class="guardian-type">{{ character.classHash}}</p>
-            <p class="guardian-race">{{ character.raceHash}}</p>
+            <p class="guardian-type">{{ getClassName(character.classHash) }}</p>
+            <p class="guardian-race">{{ getRaceName(character.raceHash) }}</p>
           </div>
         </div>
       </div>

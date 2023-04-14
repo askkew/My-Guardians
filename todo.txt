@@ -23,4 +23,19 @@ steam = 3
 xbox = 1 
 psn = 2
 
+Human = 3887404748 
+Awoken = 2803282938 
+Exo = 898834093 
+
+Warlock = 2271682572 
+Hunter = 3655393761 
+Titan = 671679327 
+
+Human = 0
+Awoken =   1
+Exo =   2
+
+Warlock =   2
+Hunter =    1
+Titan =     0
 https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/?components=200
