@@ -5,13 +5,16 @@ const axios = require('axios');
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
-
-app.post('/search', async (req, res) => {
+app.post('/search/:membershipType', async (req, res) => {
   try {
-    const response = await axios.post('https://www.bungie.net/Platform/Destiny2/SearchDestinyPlayerByBungieName/1/', {
-      "displayName": "askew",
-      "displayNameCode": 1099
+    const { displayName, displayNameCode } = req.body; // Extract displayName and displayNameCode from request body
+    const membershipType = req.params.membershipType;
+
+    const response = await axios.post(`https://www.bungie.net/Platform/Destiny2/SearchDestinyPlayerByBungieName/${membershipType}/`, {
+      displayName,
+      displayNameCode
     }, {
       headers: {
         'Content-Type': 'application/json',
