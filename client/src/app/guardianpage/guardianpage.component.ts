@@ -9,10 +9,12 @@ import { HttpClient } from '@angular/common/http';
 export class GuardianpageComponent implements OnInit {
   displayName: string;
   displayNameCode: number;
+  characterList: any[] = [];
 
   constructor(private http: HttpClient) {
     this.displayName = '';
     this.displayNameCode = 0;
+    this.characterList = [];
   }
 
   ngOnInit() {
@@ -30,7 +32,9 @@ export class GuardianpageComponent implements OnInit {
         const { membershipType, membershipId } = response;
         this.http.get<any>(`http://localhost:5000/characters/${membershipType}/${membershipId}`).subscribe(
           response => {
-            console.log(response);
+            const characterList = Object.values(response);
+            console.log(characterList);
+            this.characterList = characterList;
           },
           error => {
             console.error(error);
