@@ -22,3 +22,5 @@ https://data.destinysets.com/api/Destiny2.GetItem?membershipType=2&itemInstanceI
 steam = 3
 xbox = 1 
 psn = 2
+
+https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/?components=200

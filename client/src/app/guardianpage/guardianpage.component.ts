@@ -9,12 +9,10 @@ import { HttpClient } from '@angular/common/http';
 export class GuardianpageComponent implements OnInit {
   displayName: string;
   displayNameCode: number;
-  membershipType: number;
 
   constructor(private http: HttpClient) {
     this.displayName = '';
     this.displayNameCode = 0;
-    this.membershipType = 0;
   }
 
   ngOnInit() {
@@ -24,12 +22,20 @@ export class GuardianpageComponent implements OnInit {
     const data = {
       displayName: this.displayName,
       displayNameCode: this.displayNameCode,
-      membershipType: this.membershipType
     };
 
-    this.http.post<any>(`http://localhost:5000/search/${this.membershipType}`, data).subscribe(
+    this.http.post<any>(`http://localhost:5000/search`, data).subscribe(
       response => {
         console.log(response);
+        const { membershipType, membershipId } = response;
+        this.http.get<any>(`http://localhost:5000/characters/${membershipType}/${membershipId}`).subscribe(
+          response => {
+            console.log(response);
+          },
+          error => {
+            console.error(error);
+          }
+        );
       },
       error => {
         console.error(error);
@@ -37,3 +43,79 @@ export class GuardianpageComponent implements OnInit {
     );
   }
 }
+
+
+// import { Component, OnInit } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+
+// @Component({
+//   selector: 'app-guardianpage',
+//   templateUrl: './guardianpage.component.html',
+//   styleUrls: ['./guardianpage.component.css']
+// })
+// export class GuardianpageComponent implements OnInit {
+//   displayName: string;
+//   displayNameCode: number;
+
+//   constructor(private http: HttpClient) {
+//     this.displayName = '';
+//     this.displayNameCode = 0;
+//   }
+
+//   ngOnInit() {
+//   }
+
+  
+//   onSubmit() {
+//     const data = {
+//       displayName: this.displayName,
+//       displayNameCode: this.displayNameCode,
+//     };
+
+//     this.http.post<any>(`http://localhost:5000/search`, data).subscribe(
+//       response => {
+//         console.log(response);
+//       },
+//       error => {
+//         console.error(error);
+//       }
+//     );
+//   }
+// }
+
+// import { Component, OnInit } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+
+// @Component({
+//   selector: 'app-guardianpage',
+//   templateUrl: './guardianpage.component.html',
+//   styleUrls: ['./guardianpage.component.css']
+// })
+// export class GuardianpageComponent implements OnInit {
+//   displayName: string;
+//   displayNameCode: number;
+
+//   constructor(private http: HttpClient) {
+//     this.displayName = '';
+//     this.displayNameCode = 0;
+//   }
+
+//   ngOnInit() {
+//   }
+
+//   onSubmit() {
+//     const data = {
+//       displayName: this.displayName,
+//       displayNameCode: this.displayNameCode,
+//     };
+
+//     this.http.post<any>(`http://localhost:5000/search`, data).subscribe(
+//       response => {
+//         console.log(response);
+//       },
+//       error => {
+//         console.error(error);
+//       }
+//     );
+//   }
+// }

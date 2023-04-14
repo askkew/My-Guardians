@@ -1,34 +1,9 @@
 <div class="search-container">
-  <form (submit)="onSubmit()">
-    <label for="displayName">Display Name:</label>
+  <form (submit)="onSubmit()" class="search-container">
+    <label for="displayName">Bungie Global Display Name:</label>
     <input type="text" id="displayName" name="displayName" [(ngModel)]="displayName">
     <label for="displayNameCode">Display Name Code:</label>
     <input type="number" id="displayNameCode" name="displayNameCode" [(ngModel)]="displayNameCode">
-    <label for="membershipType">Membership Type:</label>
-      <select id="membershipType" name="membershipType" [(ngModel)]="membershipType">
-        <option value="1">Xbox</option>
-        <option value="2">PlayStation</option>
-        <option value="3">Steam</option>
-      </select>
     <button type="submit">Search</button>
   </form>
 </div>
-
-
-    <!-- <form class="search-container">
-        <div class="platform-container">
-          <input type="checkbox" id="psncb" class="icon icon--playstation">
-          <label for="psncb" class="ri-playstation-line"></label>
-          <a href="https://lucasoverbey.dev/" class="icon icon--playstation">
-            <i class="ri-playstation-line"></i>
-          </a>
-          <a href="https://lucasoverbey.dev/" class="icon icon--xbox">
-            <i class="ri-xbox-line"></i>
-          </a>
-          <a href="https://lucasoverbey.dev/" class="icon icon--steam">
-            <i class="ri-steam-line"></i>
-          </a>
-        </div>
-        <button>Search</button>
-    </form>
-</div> -->
