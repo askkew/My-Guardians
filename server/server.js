@@ -62,20 +62,15 @@ app.get('/characters/:membershipType/:membershipId', async (req, res) => {
   }
 });
 
-app.get('/inventory/:membershipId/:membershipType/:characterId', async (req, res) => {
+app.get('/inventory/:membershipType/:membershipId/:characterId', async (req, res) => {
   try {
-    const { membershipId, membershipType, characterId } = req.params;
+    const { membershipType, membershipId, characterId } = req.params;
     const response = await axios.get(`https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/Character/${characterId}/?components=205`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': '61d53d163f7f43a8b31062b55180d23a'
-      }
+      headers: { 'X-API-Key': '61d53d163f7f43a8b31062b55180d23a' }
     });
-    const characterInventoryData = response.data.Response.characters.data; //WIP
-    res.json(characterInventoryData);
+    res.json(response.data);
   } catch (error) {
-    console.error(error);
-    res.status(500).send('Server Error');
+    res.status(500).send(error.message);
   }
 });
 

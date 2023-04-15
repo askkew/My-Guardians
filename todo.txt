@@ -39,3 +39,4 @@ Warlock =   2
 Hunter =    1
 Titan =     0
 https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/?components=200
+
