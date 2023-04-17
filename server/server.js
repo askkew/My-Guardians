@@ -50,7 +50,6 @@ app.post('/search-and-inventory', async (req, res) => {
     }));
 
     const inventoryData = inventoryResponse.map(response => response.data);
-
     res.json({ characters: characterData, inventory: inventoryData });
 
   } catch (error) {
