@@ -25,27 +25,21 @@ export class GuardianpageComponent implements OnInit {
       displayName: this.displayName,
       displayNameCode: this.displayNameCode,
     };
-
-    this.http.post<any>(`http://localhost:5000/search`, data).subscribe(
+  
+    this.http.post<any>(`http://localhost:5000/search-and-inventory`, data).subscribe(
       response => {
         console.log(response);
-        const { membershipType, membershipId } = response;
-        this.http.get<any>(`http://localhost:5000/characters/${membershipType}/${membershipId}`).subscribe(
-          response => {
-            const characterList = Object.values(response);
-            console.log(characterList);
-            this.characterList = characterList;
-          },
-          error => {
-            console.error(error);
-          }
-        );
+        const characterData = response.characters;
+        const characterList = Object.values(characterData);
+        console.log(characterList);
+        this.characterList = characterList;
       },
       error => {
         console.error(error);
       }
     );
   }
+  
 
   getCharacterInfo(membershipType: number, membershipId: string, characterId: string) {
     this.http.get<any>(`http://localhost:5000/inventory/${membershipType}/${membershipId}/${characterId}`).subscribe(
