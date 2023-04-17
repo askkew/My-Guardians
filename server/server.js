@@ -41,7 +41,7 @@ app.post('/search-and-inventory', async (req, res) => {
 
     const characterData = characterResponse.data.Response.characters.data;
     const characterIds = Object.keys(characterData);
-
+///
     const inventoryResponse = await Promise.all(characterIds.map(characterId => {
       return axios.get(`https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/Character/${characterId}/?components=205`, {
         headers: {
@@ -53,20 +53,58 @@ app.post('/search-and-inventory', async (req, res) => {
     const inventoryData = inventoryResponse.map(response => response.data.Response);
     const items = inventoryData.map(character => character.equipment.data.items);
     
-    const inventory = characterIds.reduce((acc, cur, index) => {
+    const itemDetailsResponse = await Promise.all(
+      items.flat().map(item => {
+        return axios.get(`https://www.bungie.net/Platform/Destiny2/Manifest/DestinyInventoryItemDefinition/${item.itemHash}/`, {
+          headers: {
+            'X-API-Key': '61d53d163f7f43a8b31062b55180d23a'
+          }
+        });
+      })
+    );
+    
+    const itemDetailsData = itemDetailsResponse.map(response => response.data.Response);
+    
+    const itemsWithDetails = items.map(characterItems => {
+      return characterItems.map(item => {
+        const itemDetails = itemDetailsData.find(details => details.hash === item.itemHash);
+        return {
+          ...item,
+          itemDetails
+        };
+      });
+    });
+    
+    const inventory = characterIds.reduce(async (accPromise, cur, index) => {
+      const acc = await accPromise;
       acc[cur] = { items: {} };
     
-      for (let i = 0; i < items[index].length; i++) {
+      for (let i = 0; i < itemsWithDetails[index].length; i++) {
+        const item = itemsWithDetails[index][i];
+    
         acc[cur].items[i] = {
-          itemHash: items[index][i].itemHash,
-          itemInstanceId: items[index][i].itemInstanceId
+          itemHash: item.itemHash,
+          itemInstanceId: item.itemInstanceId,
+          itemDetails: item.itemDetails
         };
+    
+        const { itemInstanceId } = item;
+        const itemInstanceResponse = await axios.get(`https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/Item/${itemInstanceId}/?components=302`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': '61d53d163f7f43a8b31062b55180d23a'
+          }
+        });
+        const itemInstanceData = itemInstanceResponse.data.Response;
+    
+        acc[cur].items[i].itemInstanceData = itemInstanceData;
       }
     
       return acc;
     }, {});
     
-    res.json({ characters: characterData, inventory });
+    res.json({ characters: characterData, inventory: await inventory });
+
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');
