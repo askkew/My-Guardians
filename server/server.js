@@ -20,24 +20,13 @@ app.post('/search', async (req, res) => {
         'X-API-Key': '61d53d163f7f43a8b31062b55180d23a'
       }
     });
-
-    // const data = response.data;
-    // res.json(data);
-
     const responseData = response.data.Response;
-
-    // Find the first item that has an applicableMembershipTypes array of length greater than zero
     const membershipData = responseData.find(item => item.applicableMembershipTypes.length > 0);
-
-    // If no such item is found, return a 404 error
     if (!membershipData) {
       res.status(404).json({ error: 'No applicable membership found' });
       return;
     }
-
-    // Extract the membershipType and membershipId from the membershipData object
     const { membershipType, membershipId } = membershipData;
-
     res.json({ membershipType, membershipId });
   } catch (error) {
     console.error(error);

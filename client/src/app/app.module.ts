@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { GuardianpageComponent } from './guardianpage/guardianpage.component';
 import { GuardianselectComponent } from './guardianselect/guardianselect.component';
 import { AccountsearchComponent } from './accountsearch/accountsearch.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GuardianpageComponent,
     GuardianselectComponent,
-    AccountsearchComponent
+    AccountsearchComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
