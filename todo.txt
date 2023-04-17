@@ -43,3 +43,4 @@ https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipI
 
 https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/Character/${characterId}/?components=205
 
+https://www.bungie.net/Platform/Destiny2/Manifest/DestinyInventoryItemDefinition/${itemHash}/

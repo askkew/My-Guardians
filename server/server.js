@@ -7,6 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
 app.post('/search-and-inventory', async (req, res) => {
   try {
     const { displayName, displayNameCode } = req.body; // Extract displayName and displayNameCode from request body
@@ -50,8 +51,15 @@ app.post('/search-and-inventory', async (req, res) => {
     }));
 
     const inventoryData = inventoryResponse.map(response => response.data);
-    res.json({ characters: characterData, inventory: inventoryData });
-
+    const itemsPerCharacter = 17;
+    const characterInventories = characterIds.map((characterId, i) => {
+      const start = i * itemsPerCharacter;
+      const end = start + itemsPerCharacter;
+      const characterInventory = inventoryData.map(response => response.Response.equipment.data.items.slice(start, end));
+      return { characterId, items: characterInventory };
+    });
+    res.json({ characters: characterData, inventories: characterInventories });
+    
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');

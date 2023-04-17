@@ -21,7 +21,7 @@ export class GuardianpageComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
   onSubmit() {
     const data = {
       displayName: this.displayName,
@@ -33,25 +33,9 @@ export class GuardianpageComponent implements OnInit {
         console.log(response);
         const characterData = response.characters;
         const characterList = Object.values(characterData);
-        console.log(characterList);
         this.characterList = characterList;
         const characterInfo = response.characterInfo;
-        console.log(characterInfo);
         this.characterInfo = characterInfo;
-      },
-      error => {
-        console.error(error);
-      }
-    );
-  }
-  
-
-  getCharacterInfo(membershipType: number, membershipId: string, characterId: string) {
-    this.http.get<any>(`http://localhost:5000/inventory/${membershipType}/${membershipId}/${characterId}`).subscribe(
-      response => {
-        const characterInventory = response;
-        console.log(characterInventory);
-        // Do whatever you want with the characterInventory here
       },
       error => {
         console.error(error);
@@ -85,16 +69,3 @@ export class GuardianpageComponent implements OnInit {
     }
   }
 }
-
-
-
-    // this.http.get<any>(`http://localhost:5000/inventory/${membershipId}/${membershipType}/${characterId}`).subscribe(
-            //   response => {
-            //     const characterList = Object.values(response);
-            //     console.log(characterList);
-            //     this.characterList = characterList;
-            //   },
-            //   error => {
-            //     console.error(error);
-            //   }
-            // );
