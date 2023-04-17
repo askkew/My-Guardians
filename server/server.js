@@ -49,17 +49,24 @@ app.post('/search-and-inventory', async (req, res) => {
         }
       });
     }));
-
-    const inventoryData = inventoryResponse.map(response => response.data);
-    const itemsPerCharacter = 17;
-    const characterInventories = characterIds.map((characterId, i) => {
-      const start = i * itemsPerCharacter;
-      const end = start + itemsPerCharacter;
-      const characterInventory = inventoryData.map(response => response.Response.equipment.data.items.slice(start, end));
-      return { characterId, items: characterInventory };
-    });
-    res.json({ characters: characterData, inventories: characterInventories });
     
+    const inventoryData = inventoryResponse.map(response => response.data.Response);
+    const items = inventoryData.map(character => character.equipment.data.items);
+    
+    const inventory = characterIds.reduce((acc, cur, index) => {
+      acc[cur] = { items: {} };
+    
+      for (let i = 0; i < items[index].length; i++) {
+        acc[cur].items[i] = {
+          itemHash: items[index][i].itemHash,
+          itemInstanceId: items[index][i].itemInstanceId
+        };
+      }
+    
+      return acc;
+    }, {});
+    
+    res.json({ characters: characterData, inventory });
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');
