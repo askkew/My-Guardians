@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-accountsearch',
   templateUrl: './accountsearch.component.html',
@@ -11,7 +12,7 @@ export class AccountsearchComponent implements OnInit {
   characterList: any[] = [];
   characterInventory: any[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private toastr: ToastrService) {
     this.displayName = '';
     this.displayNameCode = 0;
     this.characterList = [];
@@ -29,6 +30,7 @@ export class AccountsearchComponent implements OnInit {
   
     this.http.post<any>(`http://localhost:5000/search-and-inventory`, data).subscribe(
       response => {
+        this.toastr.success('Found the account!');
         console.log(response);
         const characterData = response.characters;
         const characterList = Object.values(characterData);
@@ -38,6 +40,7 @@ export class AccountsearchComponent implements OnInit {
       },
       error => {
         console.error(error);
+        this.toastr.error('Error searching that account!');
       }
     );
   }

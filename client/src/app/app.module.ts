@@ -11,6 +11,7 @@ import { AccountsearchComponent } from './accountsearch/accountsearch.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
