@@ -10,13 +10,5 @@
     </mat-form-field>
     <button type="submit" mat-button>Search</button>
   </form>
+  <app-guardianpage [characterList]="characterList" [characterInventory]="characterInventory"></app-guardianpage>
 </div>
-
-<!-- 
-<form (submit)="onSubmit()" class="search-container">
-  <label for="displayName">Bungie Display Name:</label>
-  <input type="text" id="displayName" name="displayName" [(ngModel)]="displayName">
-  <label for="displayNameCode">Display Name Code:</label>
-  <input type="number" id="displayNameCode" name="displayNameCode" [(ngModel)]="displayNameCode">
-  <button type="submit">Search</button>
-</form> -->
