@@ -40,3 +40,16 @@ Hunter =    1
 Titan =     0
 https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/?components=200
 
+
+https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/Character/${characterId}/?components=205
+
+https://www.bungie.net/Platform/Destiny2/Manifest/DestinyInventoryItemDefinition/${itemHash}/
+
+https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/Item/${itemInstanceId}/?components=302
+
+itemDetails.displayProperties.icon
+itemDetails.displayProperties.name
+itemDetails.screenshot
+
+itemInstanceData.perks.data.perks[0].perkHash
+itemInstanceData.perks.data.perks[0].iconPath

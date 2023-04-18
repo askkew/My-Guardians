@@ -1,63 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-guardianpage',
   templateUrl: './guardianpage.component.html',
   styleUrls: ['./guardianpage.component.css']
 })
-export class GuardianpageComponent implements OnInit {
-  displayName: string;
-  displayNameCode: number;
-  characterList: any[] = [];
+export class GuardianpageComponent {
+  @Input() characterList: any[];
+  @Input() characterInventory: any[];
 
-  constructor(private http: HttpClient) {
-    this.displayName = '';
-    this.displayNameCode = 0;
+  constructor() {
     this.characterList = [];
-  }
-
-  ngOnInit() {
-  }
-
-  onSubmit() {
-    const data = {
-      displayName: this.displayName,
-      displayNameCode: this.displayNameCode,
-    };
-
-    this.http.post<any>(`http://localhost:5000/search`, data).subscribe(
-      response => {
-        console.log(response);
-        const { membershipType, membershipId } = response;
-        this.http.get<any>(`http://localhost:5000/characters/${membershipType}/${membershipId}`).subscribe(
-          response => {
-            const characterList = Object.values(response);
-            console.log(characterList);
-            this.characterList = characterList;
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      },
-      error => {
-        console.error(error);
-      }
-    );
-  }
-
-  getCharacterInfo(membershipType: number, membershipId: string, characterId: string) {
-    this.http.get<any>(`http://localhost:5000/inventory/${membershipType}/${membershipId}/${characterId}`).subscribe(
-      response => {
-        const characterInventory = response;
-        console.log(characterInventory);
-        // Do whatever you want with the characterInventory here
-      },
-      error => {
-        console.error(error);
-      }
-    );
+    this.characterInventory = [];
   }
 
   getClassName(classHash: number): string {
@@ -86,16 +40,3 @@ export class GuardianpageComponent implements OnInit {
     }
   }
 }
-
-
-
-    // this.http.get<any>(`http://localhost:5000/inventory/${membershipId}/${membershipType}/${characterId}`).subscribe(
-            //   response => {
-            //     const characterList = Object.values(response);
-            //     console.log(characterList);
-            //     this.characterList = characterList;
-            //   },
-            //   error => {
-            //     console.error(error);
-            //   }
-            // );

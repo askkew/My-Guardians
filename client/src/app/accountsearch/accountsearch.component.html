@@ -1,1 +1,14 @@
-<p>accountsearch works!</p>
+<div class="search-container">
+  <form (submit)="onSubmit()" class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Bungie Display Name</mat-label>
+      <input matInput type="text" id="displayName" name="displayName" [(ngModel)]="displayName">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Bungie ID Number</mat-label>
+      <input matInput id="displayNameCode" name="displayNameCode" [(ngModel)]="displayNameCode">
+    </mat-form-field>
+    <button type="submit" mat-button>Search</button>
+  </form>
+  <app-guardianpage [characterList]="characterList" [characterInventory]="characterInventory"></app-guardianpage>
+</div>
