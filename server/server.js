@@ -1,12 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+require('dotenv').config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+const apiKey = process.env.X_API_KEY;
 
 app.post('/search-and-inventory', async (req, res) => {
   try {
@@ -18,7 +20,7 @@ app.post('/search-and-inventory', async (req, res) => {
     }, {
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Key': '61d53d163f7f43a8b31062b55180d23a'
+        'X-API-Key': `${apiKey}`
       }
     });
 
@@ -35,7 +37,7 @@ app.post('/search-and-inventory', async (req, res) => {
     const characterResponse = await axios.get(`https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/?components=200`, {
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Key': '61d53d163f7f43a8b31062b55180d23a'
+        'X-API-Key': `${apiKey}`
       }
     });
 
@@ -45,7 +47,7 @@ app.post('/search-and-inventory', async (req, res) => {
     const inventoryResponse = await Promise.all(characterIds.map(characterId => {
       return axios.get(`https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/Character/${characterId}/?components=205`, {
         headers: {
-          'X-API-Key': '61d53d163f7f43a8b31062b55180d23a'
+          'X-API-Key': `${apiKey}`
         }
       });
     }));
@@ -57,7 +59,7 @@ app.post('/search-and-inventory', async (req, res) => {
       items.flat().map(item => {
         return axios.get(`https://www.bungie.net/Platform/Destiny2/Manifest/DestinyInventoryItemDefinition/${item.itemHash}/`, {
           headers: {
-            'X-API-Key': '61d53d163f7f43a8b31062b55180d23a'
+            'X-API-Key': `${apiKey}`
           }
         });
       })
@@ -92,7 +94,7 @@ app.post('/search-and-inventory', async (req, res) => {
         const itemInstanceResponse = await axios.get(`https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/Item/${itemInstanceId}/?components=302`, {
           headers: {
             'Content-Type': 'application/json',
-            'X-API-Key': '61d53d163f7f43a8b31062b55180d23a'
+            'X-API-Key': `${apiKey}`
           }
         });
         const itemInstanceData = itemInstanceResponse.data.Response;
