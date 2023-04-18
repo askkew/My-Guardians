@@ -105,7 +105,7 @@ app.post('/search-and-inventory', async (req, res) => {
       return acc;
     }, {});
     
-    res.json({ characters: characterData, inventory: await inventory });
+    res.json({ characters: characterData, inventorys: await inventory });
 
   } catch (error) {
     console.error(error);

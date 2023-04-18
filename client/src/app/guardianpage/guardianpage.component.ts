@@ -10,18 +10,18 @@ export class GuardianpageComponent implements OnInit {
   displayName: string;
   displayNameCode: number;
   characterList: any[] = [];
-  characterInfo: any[] = [];
+  characterInventory: any[] = [];
 
   constructor(private http: HttpClient) {
     this.displayName = '';
     this.displayNameCode = 0;
     this.characterList = [];
-    this.characterInfo = [];
+    this.characterInventory = [];
   }
 
   ngOnInit() {
   }
-  
+
   onSubmit() {
     const data = {
       displayName: this.displayName,
@@ -34,8 +34,8 @@ export class GuardianpageComponent implements OnInit {
         const characterData = response.characters;
         const characterList = Object.values(characterData);
         this.characterList = characterList;
-        const characterInfo = response.characterInfo;
-        this.characterInfo = characterInfo;
+        const characterInventory = response.inventorys;
+        this.characterInventory = characterInventory;
       },
       error => {
         console.error(error);

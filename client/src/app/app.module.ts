@@ -8,7 +8,9 @@ import { AppComponent } from './app.component';
 import { GuardianpageComponent } from './guardianpage/guardianpage.component';
 import { GuardianselectComponent } from './guardianselect/guardianselect.component';
 import { AccountsearchComponent } from './accountsearch/accountsearch.component';
-import { SearchComponent } from './search/search.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,15 @@ import { SearchComponent } from './search/search.component';
     GuardianpageComponent,
     GuardianselectComponent,
     AccountsearchComponent,
-    SearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

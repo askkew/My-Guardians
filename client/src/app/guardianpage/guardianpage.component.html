@@ -1,22 +1,26 @@
-<div class="search-container">
-  <form (submit)="onSubmit()" class="search-container">
-    <label for="displayName">Bungie Global Display Name:</label>
-    <input type="text" id="displayName" name="displayName" [(ngModel)]="displayName">
-    <label for="displayNameCode">Display Name Code:</label>
-    <input type="number" id="displayNameCode" name="displayNameCode" [(ngModel)]="displayNameCode">
-    <button type="submit">Search</button>
-  </form>
-  <div class="guardian-select">
-    <div class="select-container">
-      <h1 class="guardian-select-title">Select your Guardian</h1>
-      <div class="image-container" *ngFor="let character of characterList">
-        <img src="https://www.bungie.net{{character.emblemBackgroundPath}}" alt="Guardian-1">
-        <div class="image-overlay">
-          <span class="light-level">{{ character.light }}</span>
-          <div class="text">
-            <p class="guardian-type">{{ getClassName(character.classHash) }}</p>
-            <p class="guardian-race">{{ getRaceName(character.raceHash) }}</p>
-          </div>
+<div class="main-container">
+  <div class="search-background">
+    <div class="search-container">
+      <form (submit)="onSubmit()" class="search-container">
+        <label for="displayName">Bungie Global Display Name:</label>
+        <input type="text" id="displayName" name="displayName" [(ngModel)]="displayName">
+        <label for="displayNameCode">Display Name Code:</label>
+        <input type="number" id="displayNameCode" name="displayNameCode" [(ngModel)]="displayNameCode">
+        <button type="submit">Search</button>
+      </form>
+      <div class="guardian-select">
+        <div class="select-container">
+          <h1 class="guardian-select-title">Select your Guardian</h1>
+          <div class="image-container" *ngFor="let character of characterList">
+            <img src="https://www.bungie.net{{character.emblemBackgroundPath}}" alt="Guardian-1">
+            <div class="image-overlay">
+              <span class="light-level">{{ character.light }}</span>
+              <div class="text">
+                <p class="guardian-type">{{ getClassName(character.classHash) }}</p>
+                <p class="guardian-race">{{ getRaceName(character.raceHash) }}</p>
+              </div>
+            </div>
+          </div>   
         </div>
       </div>
     </div>
